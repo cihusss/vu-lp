@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Agile Management</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<script src="//app-ab16.marketo.com/js/forms2/js/forms2.min.js"></script>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
@@ -57,7 +59,8 @@
 
 		h1 { font-size: 3em; }
 		h3 { font-size: 1.4em; font-weight: normal; }
-		h4 {font-size: 1.3em;margin: 16px 0;line-height: 1.8em;}
+		h4 { font-size: 1.3em; margin: 16px 0; line-height: 1.8em; }
+		h5 { font-size: 1.1em; line-height: 1.4em; margin: 0; }
 		p { font-size: 0.9em; line-height: 1.8em; }
 		p.disc {font-size: 0.5em;opacity: 0.6;margin-top: 16px;}
 		p.p-big { font-size: 1.1em; }
@@ -65,7 +68,7 @@
 
 		.margin-tb-64 { margin: 64px 0; }
 		.margin-t-64 { margin-top: 64px; }
-		.margin-t-32 { margin-top: 32px; }
+		.margin-t-32 {margin-top: 32px;}
 		.margin-b-64 { margin-bottom: 64px; }
 
 		.padding-tb-64 {padding: 64px 0;}
@@ -98,6 +101,7 @@
 			background-position: -5px center;
 			box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
 			background-size: cover;
+			border-radius: 4px;
 		}
 
 		.image-100 {
@@ -144,12 +148,16 @@
 		}
 
 		#lp-form {
-			background: rgba(255,255,255,0.3);
-			min-height: 620px;
+			background: rgba(255,255,255,1);
+			/* min-height: 620px; */
 			width: 100%;
 			margin: 42px 0 42px 42px;
 			box-sizing: border-box;
-			margin-top: -120px;
+			margin-top: -100px;
+			padding: 48px;
+			opacity: 0;
+			transition: opacity .5s;
+			border-radius: 4px;
 		}
 
 		#lp-underhero {flex-direction: column;/* padding: 16px 0; */}
@@ -179,6 +187,7 @@
 			width: 100%;
 			height: 206px;
 			margin: 32px 0 16px 0;
+			border-radius: 4px;
 		}
 
 		.card {
@@ -225,7 +234,189 @@
 			white-space: nowrap;
 		}
 
-		@media (max-width: 768px) {
+		/* --- multi-step form --- */
+
+        .mktoForm > .mktoFormRow fieldset {
+           border: none;
+        }
+        .mktoForm > .mktoFormRow,
+        .mktoForm > .mktoButtonRow,
+        .mktoForm > .mktoFormRow fieldset legend {
+           display: none;   
+        }
+        .mktoForm > .mktoButtonRow button[type="button"] {
+           margin-right: 10px;
+           margin-bottom: 10px;
+        }
+        .mktoForm .mktoCheckboxList > .mktoError {
+           right: auto !important;
+           bottom: -54px !important;
+        }
+
+        .mktoForm {
+            padding: 16px 0 24px 0;
+            border-radius: 4px;
+            width: 100% !important;
+            font-family: 'Montserrat', sans-serif !important;
+            margin-top: 32px;
+        }
+
+        .mktoForm label {
+            width: auto !important;
+            top: 20px;
+            display: block;
+            position: absolute;
+            left: 6px;
+            font-size: 9px;
+        }
+
+        .mktoForm input {
+            width: 100% !important;
+            height: 42px !important; 
+            border: 1px solid #a9a9a9;
+            border-radius: 4px;
+            padding: 2px 6px 0 6px !important;
+        }
+
+        .mktoForm input, .mktoForm select {
+        	 font-size: 1.1em !important;
+        }
+
+        .mktoForm select {
+            width: 100% !important;
+            height: 42px !important; 
+            border: 1px solid #a9a9a9;
+            border-radius: 4px;
+            background: white;
+            background-image:
+                linear-gradient(45deg, transparent 50%, #001F5B 50%),
+                linear-gradient(135deg, #001F5B 50%, transparent 50%),
+                linear-gradient(to right, white, white);
+            background-position:
+                calc(100% - 20px) calc(1em + 4px),
+                calc(100% - 15px) calc(1em + 4px),
+                100% 0;
+            background-size:
+                5px 5px,
+                5px 5px,
+                2.5em 2.5em;
+            background-repeat: no-repeat;
+            padding: 2px 6px 0 6px !important;
+        }
+
+        .mktoForm fieldset {
+            padding: 0 !important;
+            width: 100%;
+        }
+
+        .mktoFieldDescriptor {
+            width: 100%;
+            margin: 0 !important;
+        }
+
+        .mktoFieldWrap {
+            width: 100%;
+        }
+
+        .mktoOffset {
+            display: none;
+        }
+
+        .mktoButtonWrap {
+            width: 100%;
+            margin: 0 !important;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mktoButton {
+            border-radius: 4px;
+            height: 42px;
+            background: #001F5B !important;
+            border: none !important;
+            margin: 6px 0 0 0 !important;
+            padding: 8px 24px !important;
+            width: 100%;
+        }
+
+        .mktoButton[data-dir="prev"] {
+            background: #4e4d4d !important;
+            margin: 6px 16px 0 0 !important;
+        }
+
+        .mktoForm .mktoRequiredField label.mktoLabel {
+            font-weight: normal !important;
+        }
+
+        .mktoLabel {
+            opacity: 0;
+            transition: opacity .3s ease-out;
+        }
+
+        .mktoAsterix {
+            padding-left: 4px !important;
+        }
+
+        .mktoErrorMsg {
+            background: #cc0000 !important;
+            border-radius: 4px !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .mktoErrorArrow {
+            background-position: #cc0000 !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .mktoForm .mktoAsterix {
+            opacity: 0;
+        }
+
+        .mktoHtmlText {
+            width: 100% !important;
+        }
+
+        .mktoForm legend {
+            display: block !important;
+            margin: 0 0 -12px !important;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            opacity: .6;
+        }
+
+        input, input::placeholder, select {
+            color: #4C4C4C;
+        }
+
+        option:first-child { 
+            color: red!important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus,
+        select:-webkit-autofill,
+        select:-webkit-autofill:hover,
+        select:-webkit-autofill:focus {
+          /*-webkit-box-shadow: 0 0 0px 1000px #000 inset;*/
+          transition: background-color 5000s ease-in-out 0s;
+        }
+
+        input[type=text], input[type=button], select {
+            -webkit-appearance: none;
+        }
+
+        .form-disc {
+        	font-size:  0.7em;
+        	padding: 24px 0 0 0 !important;
+        }
+
+       	@media (max-width: 768px) {
 
 			h1 { font-size: 2.4em; }
 
@@ -252,6 +443,7 @@
 
 		    #lp-form {
 		    	margin: 32px 0 24px 0;
+		    	padding: 32px;
 		    }
 
 		    .hero-space {
@@ -296,37 +488,86 @@
 				padding: 32px;
 			}
 
-		    /* ---------- salesforce chat ---------- */
+			/* form stuff */
 
-            .embeddedServiceHelpButton .helpButton .uiButton {
-                background-color: #001F5B;
-                font-family: "Salesforce Sans", sans-serif;
-            }
-            .embeddedServiceHelpButton .helpButton .uiButton:focus {
-                outline: 1px solid #001F5B;
-            }
-            @font-face {
-                font-family: 'Salesforce Sans';
-                src: url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff') format('woff'),
-                url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf') format('truetype');
+			            .mktoFormRow { 
+                margin: 0 0 16px 0 !important;
             }
 
-            #snapins_invite { background-color: #FFFFFF; font-family: "Salesforce Sans", sans-serif; overflow: visible; border-radius: 8px; visibility: hidden; }
-            .embeddedServiceInvitation { background-color: transparent; max-width: 290px; max-height: 210px; -webkit-box-shadow: 0 7px 12px rgba(0,0,0,0.28); -moz-box-shadow: 0 7px 12px rgba(0,0,0,0.28); box-shadow: 0 7px 12px rgba(0,0,0,0.28); }
-            @media only screen and (min-width: 48em) { /*mobile*/ .embeddedServiceInvitation { max-width: 332px; max-height: 210px; } }
-            .embeddedServiceInvitation > .embeddedServiceInvitationHeader { width: inherit; height: 32px; line-height: 32px; padding: 10px; color: #FFFFFF; background-color: #001F5B; overflow: initial; display: flex; justify-content: space-between; align-items: stretch; border-top-left-radius: 8px; border-top-right-radius: 8px; }
-            .embeddedServiceInvitationHeader #embeddedServiceAvatar { width: 32px; height: 32px; border-radius: 50%; }
-            .embeddedServiceInvitationHeader .embeddedServiceTitleText { font-size: 18px; color: #FFFFFF; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; align-self: stretch; flex-grow: 1; max-width: 100%; margin: 0 12px; }
-            .embeddedServiceInvitationHeader .embeddedServiceCloseIcon { border: none; border-radius: 3px; cursor: pointer; position: relative; bottom: 3%; background-color: transparent; width: 32px; height: 32px; font-size: 23px; color: #FFFFFF; }
-            .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:focus { outline: none; }
-            .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:focus::before { content: " "; position: absolute; top: 11%; left: 7%; width: 85%; height: 85%; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; pointer-events: none; }
-            .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:active, .embeddedServiceCloseIcon:hover { background-color: #FFFFFF; color: rgba(0,0,0,0.7); opacity: 0.7; }
-            .embeddedServiceInvitation > .embeddedServiceInvitationBody { background-color: #FFFFFF; max-height: 110px; min-width: 260px; margin: 0 8px; font-size: 14px; line-height: 20px; overflow: auto; }
-            .embeddedServiceInvitationBody p { color: #000000; padding: 8px; margin: 12px 0; }
-            .embeddedServiceInvitation > .embeddedServiceInvitationFooter { width: inherit; color: #FFFFFF; text-align: right; background-color: #FFFFFF; padding: 10px; max-height: 50px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
-            .embeddedServiceInvitationFooter > .embeddedServiceActionButton { font-size: 14px; max-height: 40px; border: none; border-radius: 4px; padding: 10px; margin: 4px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; }
-            .embeddedServiceInvitationFooter > #acceptInvite { background-color: #001F5B; color: #FFFFFF; }
-            .embeddedServiceInvitationFooter > #rejectInvite { background-color: #FFFFFF; color: #001F5B; }
+            .mktoFormRow input[type="hidden"] {
+                display: none;
+            }
+
+            .mktoButton {
+                margin-top: -16px !important;
+                height: 42px !important;
+                font-size: 18px !important;
+                transition: color .3s ease-in-out;
+            }
+
+            .mktoButton:hover {
+                opacity: 0.8;
+            }
+
+            .mktoButton[data-dir="prev"] {
+                background: #4e4d4d !important;
+                margin: -16px 16px 0 0 !important;
+            }
+
+            .mktoForm {
+                max-width: 100% !important;
+                padding: 24px 0 !important;
+                margin-top: -16px !important;
+            }
+
+            .mktoForm label {
+                top: 4px;
+                left: -7px;
+            }
+
+            .mktoForm input, .mktoForm select {
+                height: 48px !important;
+            }
+
+            .mktoForm legend {
+                margin: 0 0 -4px -8px !important;
+            }
+
+            .form-disc {
+            	padding: 0 !important;
+            }
+
+	    /* ---------- salesforce chat ---------- */
+
+        .embeddedServiceHelpButton .helpButton .uiButton {
+            background-color: #001F5B;
+            font-family: "Salesforce Sans", sans-serif;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+            outline: 1px solid #001F5B;
+        }
+        @font-face {
+            font-family: 'Salesforce Sans';
+            src: url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff') format('woff'),
+            url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf') format('truetype');
+        }
+
+        #snapins_invite { background-color: #FFFFFF; font-family: "Salesforce Sans", sans-serif; overflow: visible; border-radius: 8px; visibility: hidden; }
+        .embeddedServiceInvitation { background-color: transparent; max-width: 290px; max-height: 210px; -webkit-box-shadow: 0 7px 12px rgba(0,0,0,0.28); -moz-box-shadow: 0 7px 12px rgba(0,0,0,0.28); box-shadow: 0 7px 12px rgba(0,0,0,0.28); }
+        @media only screen and (min-width: 48em) { /*mobile*/ .embeddedServiceInvitation { max-width: 332px; max-height: 210px; } }
+        .embeddedServiceInvitation > .embeddedServiceInvitationHeader { width: inherit; height: 32px; line-height: 32px; padding: 10px; color: #FFFFFF; background-color: #001F5B; overflow: initial; display: flex; justify-content: space-between; align-items: stretch; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .embeddedServiceInvitationHeader #embeddedServiceAvatar { width: 32px; height: 32px; border-radius: 50%; }
+        .embeddedServiceInvitationHeader .embeddedServiceTitleText { font-size: 18px; color: #FFFFFF; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; align-self: stretch; flex-grow: 1; max-width: 100%; margin: 0 12px; }
+        .embeddedServiceInvitationHeader .embeddedServiceCloseIcon { border: none; border-radius: 3px; cursor: pointer; position: relative; bottom: 3%; background-color: transparent; width: 32px; height: 32px; font-size: 23px; color: #FFFFFF; }
+        .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:focus { outline: none; }
+        .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:focus::before { content: " "; position: absolute; top: 11%; left: 7%; width: 85%; height: 85%; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; pointer-events: none; }
+        .embeddedServiceInvitationHeader .embeddedServiceCloseIcon:active, .embeddedServiceCloseIcon:hover { background-color: #FFFFFF; color: rgba(0,0,0,0.7); opacity: 0.7; }
+        .embeddedServiceInvitation > .embeddedServiceInvitationBody { background-color: #FFFFFF; max-height: 110px; min-width: 260px; margin: 0 8px; font-size: 14px; line-height: 20px; overflow: auto; }
+        .embeddedServiceInvitationBody p { color: #000000; padding: 8px; margin: 12px 0; }
+        .embeddedServiceInvitation > .embeddedServiceInvitationFooter { width: inherit; color: #FFFFFF; text-align: right; background-color: #FFFFFF; padding: 10px; max-height: 50px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        .embeddedServiceInvitationFooter > .embeddedServiceActionButton { font-size: 14px; max-height: 40px; border: none; border-radius: 4px; padding: 10px; margin: 4px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; }
+        .embeddedServiceInvitationFooter > #acceptInvite { background-color: #001F5B; color: #FFFFFF; }
+        .embeddedServiceInvitationFooter > #rejectInvite { background-color: #FFFFFF; color: #001F5B; }
 	</style>
 </head>
 <body>
@@ -363,7 +604,10 @@
 					</span>
 				</div>
 				<div class="col-1-2">
-					<div id="lp-form"></div>
+					<div id="lp-form">
+						<h5 class="fg-blue-dark center-text font-normal">Request a program brochure with course info, pricing and more.</h5>
+						<form id="mktoForm_5048"></form>
+					</div>
 				</div>
 			</div>
 
@@ -573,6 +817,9 @@
 	</div>
 	<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script>
+
+    	//////////// SF Chat ///////////
+
         (function() {
             document.getElementById('closeInvite').onclick = function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); };
             document.getElementById('rejectInvite').onclick = function() { embedded_svc.inviteAPI.inviteButton.rejectInvite(); }; // use this API call to reject invitations
@@ -614,6 +861,313 @@
         } else {
             initESW('https://service.force.com');
         }
+
+        //////////// Load Marketo Form ///////////
+
+        MktoForms2.loadForm("https://learn.bisk.com", "058-NIT-467", 5048);
+
+        //////////// Marketo Form Config ///////////
+
+		var userConfig = {
+	   		buttons: {
+	      	prev: {
+	        	label: "Back",
+	         	disabled: false
+	    },
+	    	next: {
+	        	label: "Next"
+	    	}
+	    },
+			requiredFields: [
+				{
+					 name: "Program_of_Interest__c",
+					 message: "This field is required."
+				},
+				{
+					name: "Highest_Level_of_Education__c",
+					message: "This field is required."
+				},
+				{
+					name: "FirstName",
+					message: "This field is required."
+				},
+				{
+					name: "LastName",
+					message: "This field is required."
+				},
+				{
+					name: "Email",
+					message: "This field is required."
+				},
+				{
+					name: "Phone",
+					message: "This field is required."
+				},
+				{
+					name: "Military_Relationship__c",
+					message: "This field is required."
+				},
+				{
+					name: "CountryCode",
+					message: "This field is required."
+			  }
+			]
+		};
+
+		//////////// Marketo Form Magic ///////////
+
+		MktoForms2.whenReady(function(form) {
+			var formEl = form.getFormElem()[0],
+			arrayify = getSelection.call.bind([].slice);
+
+			var fieldRowStor = ".mktoForm > .mktoFormRow",
+				buttonRowStor = ".mktoForm > .mktoButtonRow",
+				buttonStor = ".mktoButtonRow .mktoButton",
+				fsaatPrefix = "fsaat-",
+				localFragmentAttr = "data-form-local-fragment";
+		   
+			var CSSOM_RULEPOS_FIRST = 0;
+
+			var fieldRows = formEl.querySelectorAll(fieldRowStor),
+				submitButtonRow = formEl.querySelector(buttonRowStor),
+				submitButton = submitButtonRow.querySelector(buttonStor);
+		   
+			userConfig.requiredFields
+			.map(function(fieldDesc) {
+		        fieldDesc.label = formEl.querySelector("[for='"+ fieldDesc.name + "']");
+		        fieldDesc.refEl = formEl.querySelector("[name='" + fieldDesc.name + "']");
+		        return fieldDesc;
+		     })
+			.forEach(function(fieldDesc){
+				fieldDesc.label.parentNode.classList.add("mktoRequiredField");
+			});
+		   
+		    var dynableSheet = arrayify(document.styleSheets)
+			.filter(function(sheet){
+				return sheet.ownerNode.nodeName == "STYLE";
+			})[0];   
+		   
+			arrayify(fieldRows).forEach(function(row, rowIdx) {
+			var rowPos = {
+				isFirst: rowIdx == 0,
+				isLast: rowIdx == fieldRows.length - 1
+			};
+
+			// id each wrapper row in DOM order
+			row.id = fsaatPrefix + rowIdx;
+
+			var navButtonRow = rowPos.isLast
+					? submitButtonRow
+					: submitButtonRow.cloneNode(true),
+				newRowAxis = row.nextSibling,
+				nextEnabled = !rowPos.isLast,
+				prevEnabled = !rowPos.isFirst && !userConfig.buttons.prev.disabled,
+				newButtonAxis,
+				newButtonTmpl,
+				navButtons = {};
+
+			if (nextEnabled) {
+		         navButtons.next = navButtonRow.querySelector(buttonStor);
+			}
+
+			if (prevEnabled) {
+				newButtonTmpl = newButtonAxis = navButtons.next || submitButton;
+		        navButtons.prev = newButtonTmpl.cloneNode();
+			}
+
+			Object.keys(navButtons).forEach(function(dir) {
+				navButtons[dir].type = "button";
+				navButtons[dir].setAttribute("data-dir", dir);
+				navButtons[dir].innerHTML = userConfig.buttons[dir].label;
+			});
+
+			if (nextEnabled) {
+				row.parentNode.insertBefore(navButtonRow, newRowAxis);
+			}
+
+			if (prevEnabled) {
+				newButtonAxis.parentNode.insertBefore(navButtons.prev, newButtonAxis);
+			}
+		            
+			navButtonRow.addEventListener("click", function(e) {
+				if (e.target.tagName == "BUTTON" && e.target.type == "button" ) {            
+					if (e.target.getAttribute("data-dir") == "next" && !isCustomValid(true,row)) {
+						return;
+			    	}
+			    fsaatSet(row, e.target.getAttribute("data-dir"));
+				}
+			});
+		      
+			dynableSheet.insertRule(
+				[
+					".mktoForm[" + localFragmentAttr + "='#" + row.id + "']" + " " + ".mktoFormRow#" + row.id + ",",
+					".mktoForm[" + localFragmentAttr + "='#" + row.id + "']" + " " + ".mktoFormRow#" + row.id + " + " + ".mktoButtonRow", 
+					"{ display: block; }"
+				].join(" "),
+					CSSOM_RULEPOS_FIRST
+				);
+			});
+
+			function fsaatSet(current, dir) {
+				var FSAAT_DIR_PREV = "prev",
+				FSAAT_DIR_NEXT = "next";
+		      
+				var dir = dir || FSAAT_DIR_NEXT,
+				currentIndex, 
+				newHash;
+
+				if (current instanceof HTMLElement) {
+					currentIndex = +current.id.split(fsaatPrefix)[1];
+				} else if (!isNaN(current)) {
+					currentIndex = current;
+				} else {
+					currentIndex = -1;
+				}
+
+				newHash = "#" + fsaatPrefix + (dir == FSAAT_DIR_NEXT ? ++currentIndex : --currentIndex);
+
+				formEl.setAttribute(localFragmentAttr, newHash);
+			}    
+		   
+			function isCustomValid(native, currentStep){
+			form.submittable(false);
+		      
+			var currentStep = currentStep || formEl,
+				currentValues = form.getValues();
+
+			var currentUnfilled = userConfig.requiredFields
+				.filter(function(fieldDesc) {
+					return currentStep.contains(fieldDesc.refEl) && (!currentValues[fieldDesc.name] || (fieldDesc.refEl.type == "checkbox" && currentValues[fieldDesc.name] == "no"));
+			});
+
+			if (currentUnfilled.length) {
+				form.showErrorMessage(currentUnfilled[0].message,MktoForms2.$(currentUnfilled[0].refEl));
+				return false;
+			} else {
+				form.submittable(true);
+				return true;
+				}         
+			}
+		   
+			form.onValidate(isCustomValid);
+			fsaatSet();
+
+			// UI Magic
+
+			labels = document.getElementsByClassName('mktoLabel');
+			inputs = document.getElementsByClassName('mktoField');
+			inputValues = [];
+		   
+			for (i = 0; i < labels.length; i++) {
+				label = document.getElementsByClassName('mktoLabel')[i];
+				label.style.opacity = '0';
+				name = label.innerHTML.split("</div>").pop();
+				input = label.nextSibling.nextSibling;
+				input.setAttribute('placeholder', name);
+			}
+		   
+			for (i = 0; i < inputs.length; i++) {
+				input = document.getElementsByClassName('mktoField')[i];
+				input.addEventListener('focusin', function() {
+			        boo = this.previousSibling.previousSibling;
+			        boo.style.opacity = '1';
+			        placeholder = this.setAttribute('placeholder', '');
+			        this.setAttribute('style', 'padding: 12px 6px 0 6px !important');
+				});
+				input.addEventListener('focusout', function() {
+		        	boo = this.previousSibling.previousSibling;
+		        	placeholder = this.setAttribute('placeholder', boo.innerHTML.split("</div>").pop());
+		        	if(this.value == "") {
+						boo.style.opacity = '0';
+						this.setAttribute('style', 'padding: 2px 6px 0 6px !important');
+		        	}
+		        	else {
+						boo.style.opacity = '1';
+		        	}
+				});
+		    }
+
+		    console.log(inputs[0].value);
+
+		    btnSubmit = document.querySelector('button[type="submit"]');
+		    btnSubmit.addEventListener('click', function() {
+		    for (i = 0; i < inputs.length; i++) {
+				inputVal = document.getElementsByClassName('mktoField')[i].value;
+				console.log(inputVal);
+				inputValues.push(inputVal);
+		    }
+		    // console.log(inputValues);
+		    if (inputValues.includes('')) {
+				console.log('one of the values is empty');
+		    }
+		    else {
+	            btnSubmit.innerHTML = 'Wait...';
+	            alert('booooom');
+	            document.querySelector('button[type="button"]:nth-child(1)').style.display = 'none !important';
+		        }
+		    });
+
+		    legends = document.querySelectorAll('legend');
+		    legends.forEach(element => {
+			    let currText = element.innerHTML.replace('0', '');
+			    steps = document.querySelectorAll('fieldset');
+			    element.innerHTML = currText + ' of ' + steps.length;
+			    element.setAttribute('style', 'display: block !important');
+		    });
+
+		    lala = document.querySelectorAll('.mktoField');
+		    lala.forEach(element => {
+		      element.addEventListener('focusin', function() {
+		         console.log('focusIn');
+		         // element.setAttribute('style', 'padding: 12px 6px 0 6px !important');
+		      });
+		      element.addEventListener('focusout', function() {
+		         console.log('focusOut');
+		         // element.setAttribute('style', 'padding: 2px 6px 0 6px !important');
+		      });
+		    });
+
+		    // Input Grouping
+
+		    arrayify(formEl.querySelectorAll('SELECT'))
+		    .forEach(function(selectEl) {
+		        var currentOg;
+		        arrayify(selectEl.querySelectorAll('OPTION'))
+		            .forEach(function(o, idx) {
+		                if (o.value == '[OPTGROUP]') {
+		                    currentOg = document.createElement('OPTGROUP');
+		                    currentOg.label = o.textContent;
+		                    selectEl.appendChild(currentOg);
+		                    selectEl.removeChild(o);
+		                } else {
+		                    if (currentOg) currentOg.appendChild(o);
+		            }
+		        });
+		    });
+
+		    // Disable Inputs
+
+		    hiddenEls = formEl.querySelectorAll('.mktoFormRow input[type="hidden"]');                
+		    for(var i = 0; i < hiddenEls.length; i++) {
+		        hiddenEls[i].parentNode.style.display = "none";
+		    }
+
+		    optionEls = formEl.querySelectorAll('OPTION'),
+		    disabledTag = /^\[DISABLED\]\s/,
+		    _forEach = Array.prototype.forEach;
+		    _forEach.call(optionEls,function(opt){
+		        if (disabledTag.test(opt.textContent)) {
+		            	opt.textContent = opt.textContent.replace(disabledTag,'');
+		            	opt.disabled = true;
+		        } 
+		    });
+
+		    // Show Form
+
+		    document.getElementById("lp-form").style.opacity = 1;
+
+		});
+
     </script>
 </body>
 </html>
