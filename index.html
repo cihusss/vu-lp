@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Agile Management</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+		/* ---------- reset ---------- */
+
+		html { scroll-behavior: smooth; }
+		html, body { margin: 0; height: 100%; }
+		a { text-decoration: none; }
+		a:hover { text-decoration: underline; }
+		a img { border: 0; outline: none; } 
+
+		/* ---------- the grid ---------- */
+
+		*, *:after, *:before { box-sizing: border-box; }
+
+		.row { width: 100%; }
+
+		.flex { display: flex; align-items: center; justify-content: center; }
+		.width-lock {max-width: 1060px;padding: 0 32px;}
+		[class*='col-'], .row {display: flex;align-items: center;justify-content: center;}
+
+		.flex-row { flex-direction: row; }
+		.flex-col { flex-direction: column; }
+		.flex-start { align-items: flex-start; }
+		.flex-end { align-items: flex-end; }
+		.space-between { justify-content: space-between; }
+
+		.col-1-1, .col-2-2, .col-3-3, .col-4-4, .col-5-5 { width: 100%; }
+		.col-1-2 {width: 50%;}
+		.col-1-3 { width: 33.33%; }
+		.col-2-3 { width: 66.7%; }
+		.col-1-5 { width: 20%; }
+		.col-1-4 { width: 25%; }
+		.col-2-5 { width: 40%; }
+		.col-3-5 { width: 60%; }
+		.col-4-5 { width: 80%; }
+		.col-45-5 { width: 90%; }
+
+		.only-mob { display: none; }
+		.only-desk { display: flex; }
+
+		@media (max-width: 768px) {
+
+		    .flex-row, .row, .space-between { flex-direction: column; } 
+		    [class*='col-'] { width: 100%; }
+
+		    .only-mob { display: flex; }
+			.only-desk { display: none; }
+		}
+
+		/* ---------- the base ---------- */
+
+		h1 { font-size: 3em; }
+		h3 { font-size: 1.4em; font-weight: normal; }
+		h4 {font-size: 1.3em;margin: 16px 0;line-height: 1.8em;}
+		p { font-size: 0.9em; line-height: 1.8em; }
+		p.disc {font-size: 0.5em;opacity: 0.6;margin-top: 16px;}
+		p.p-big { font-size: 1.1em; }
+		ul, ol { font-size: 0.9em; padding: 0 0 0 20px; line-height: 1.8em; margin: 0; }
+
+		.margin-tb-64 { margin: 64px 0; }
+		.margin-t-64 { margin-top: 64px; }
+		.margin-t-32 { margin-top: 32px; }
+		.margin-b-64 { margin-bottom: 64px; }
+
+		.padding-tb-64 {padding: 64px 0;}
+		.padding-r-32 { padding-right: 32px; }
+		.padding-l-32 { padding-left: 32px; }
+		.padding-32 { padding: 32px; }
+
+		.bg-blue-dark { background-color: #001F5B; }
+		.bg-blue-light { background-color: #418FDE; }
+		.bg-gray { background-color: #F5F5F5; }
+		.fg-white { color: #ffffff; }
+		.fg-blue-dark { color: #001F5B; }
+		.fg-gray { color: #484848; }
+		.font-bold { font-weight: bold; }
+		.font-normal { font-weight: normal; }
+		.center-text { text-align: center; }
+		.box-shadow { box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%); }
+
+		.button {
+			padding: 18px 24px;
+			border-radius: 4px;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+		.image-square {
+			width: 100%;
+			height: 300px;
+			background-image: url("https://v.fastcdn.co/u/2d746943/49073790-0-VU-Social-Image-0000.jpg");
+			background-position: -5px center;
+			box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+			background-size: cover;
+		}
+
+		.image-100 {
+			width: 100%;
+		}
+
+		#lp-wrap {
+			font-family: 'Montserrat', sans-serif;
+			height: 100%;
+		}
+
+		/* ---------- page ---------- */
+
+		#lp-header {
+			min-height: 70px;
+		}
+
+		#vu-logo {
+			width: 200px;
+		}
+
+		#vu-slogan {
+			width: 180px;
+		}
+
+		#lp-promo {
+			min-height: 70px;
+		}
+
+		#lp-hero {
+			background-image: url("https://v.fastcdn.co/u/2d746943/49664215-0-Agile-Header-New.png");
+			background-size: cover;
+			background-position: center -140px;
+			background-repeat: no-repeat;
+			/* max-height: 820px; */
+		}
+
+		#lp-hero h1, #lp-hero h3 {
+			margin-bottom: 0;
+		}
+
+		.hero-space {
+			padding-top: 450px;
+		}
+
+		#lp-form {
+			background: rgba(255,255,255,0.3);
+			min-height: 620px;
+			width: 100%;
+			margin: 42px 0 42px 42px;
+			box-sizing: border-box;
+			margin-top: -120px;
+		}
+
+		#lp-underhero {flex-direction: column;/* padding: 16px 0; */}
+
+		#quote {
+			background-image: url("https://v.fastcdn.co/u/2d746943/39003031-0-quote-bg.jpg");
+			background-size: cover;
+			background-position: center;
+			text-align: center;
+		}
+
+		#image-square {
+			max-height: 240px;
+		}
+
+		.quote-img { width: 100px; margin-top: 32px; }
+
+		.quote-p {
+			font-size: 1.1em;
+		}
+
+		.box-horizontal {
+			background-image: url("https://v.fastcdn.co/u/2d746943/37929091-0-Military-bar.jpg");
+			background-size: cover;
+			background-position: center;
+			text-align: center;
+			width: 100%;
+			height: 206px;
+			margin: 32px 0 16px 0;
+		}
+
+		.card {
+			display: flex;
+			box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+			max-height: 124px;
+			overflow: hidden;
+			border-radius: 4px;
+		}
+
+		.card img {
+			width: 100px;
+			align-self: center;
+		}
+
+		.card-text {
+			padding: 12px 23px;
+			display: flex;
+		}
+
+		.card-text p {
+			font-size: 0.8em;
+			align-self: center;
+		}
+
+		#diagonal {
+			background-image: url("https://v.fastcdn.co/u/2d746943/49664210-0-section-BG.png");
+			background-size: cover;
+			background-position: center;
+		}
+
+		#footer {
+			position: relative;
+			padding: 60px;
+		}
+
+		#footer p {
+			font-size: 0.8em;
+		}
+
+		#footer a {
+			margin: 4px;
+			font-size: 0.8em;
+			white-space: nowrap;
+		}
+
+		@media (max-width: 768px) {
+
+			h1 { font-size: 2.4em; }
+
+			.margin-tb-64 { margin: 32px 0; }
+			.padding-tb-64 { padding: 32px 0; }
+
+			#lp-header {
+				min-height: auto;
+				padding: 32px 0;
+			}
+
+			#vu-logo {
+				margin-bottom: 16px;
+			}
+
+			#lp-promo {
+				text-align: center;
+			}
+
+			#lp-hero {
+				background-size: contain;
+				background-position: top center;
+			}
+
+		    #lp-form {
+		    	margin: 32px 0 24px 0;
+		    }
+
+		    .hero-space {
+		    	padding-top: 200px;
+		    }
+
+		    .padding-r-32, .padding-l-32 {
+		    	padding: 0;
+			}
+
+			.mob-only-padding-t-32 {
+				padding-top: 32px;
+			}
+
+			.mob-only-margin-t-32 {
+				margin-top: 32px;
+			}
+
+			#image-square {
+				max-height: none;
+			}
+
+			.box-horizontal {
+				width: 100%;
+				height: auto;
+				background-image: none;
+			}
+
+			.mob-bg-blue-light {
+				background-color: #418FDE;
+			}
+
+			.mob-bg-gray {
+				background-color: #f5f5f5;
+			}
+
+			#footer {
+				padding: 32px;
+			}
+
+	</style>
+</head>
+<body>
+	<div id="lp-wrap">
+
+		<!-- header -->
+
+		<div id="lp-header" class="row bg-blue-dark">
+			<div class="col-1-1 width-lock space-between">
+				<img src="//v.fastcdn.co/u/2d746943/37625731-0-VU-logo-white.png" id="vu-logo">
+				<img src="https://v.fastcdn.co/u/2d746943/39038631-0-ignitelogo-vu-blue-r.png" id="vu-slogan">
+			</div>
+		</div>
+
+		<!-- promo -->
+
+		<div id="lp-promo" class="row bg-blue-light fg-white">
+			<div class="col-1-1 width-lock">
+				<p class="font-bold">Save 20% on select courses and certificate programs for a limited time</p>
+			</div>
+		</div>
+
+		<!-- hero -->
+
+		<div id="lp-hero" class="row bg-blue-dark">
+			<div class="row width-lock fg-white hero-space flex-start">
+				<div class="col-1-2 flex-col flex-start">
+					<h1>Earn a Certificate<br>in Agile</h1>
+					<h3>Prepare for Agile Certification 100% Online</h3>
+					<span class="only-desk flex-col">
+						<h3 class="font-bold">Create Quality Deliverables<br>Faster & More Efficiently</h3>
+						<p>Villanova University's Certificate in Agile program introduces methodology that helps organizations improve time to market, efficiency and customer satisfaction by prioritizing rapid development and continuous delivery of products and services.</p>
+						<p>Collaborative and adaptive by design, Agile breaks requirements into small manageable pieces, providing teams focus and clarity as they work toward organizational goals. Course content covers key agile focus areas similar to those identified as Scrum.org key competencies.</p>
+					</span>
+				</div>
+				<div class="col-1-2">
+					<div id="lp-form"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- underhero -->
+
+		<div id="lp-underhero" class="row bg-blue-dark fg-white flex-col">
+			<div class="row width-lock">
+				<div class="col-1-1 flex-col flex-start margin-b-64">
+					<span class="only-mob flex-col">
+						<h3 class="font-bold">Create Quality Deliverables<br>Faster & More Efficiently</h3>
+						<p>Villanova University's Certificate in Agile program introduces methodology that helps organizations improve time to market, efficiency and customer satisfaction by prioritizing rapid development and continuous delivery of products and services.</p>
+						<p>Collaborative and adaptive by design, Agile breaks requirements into small manageable pieces, providing teams focus and clarity as they work toward organizational goals. Course content covers key agile focus areas similar to those identified as Scrum.org key competencies.</p>
+					</span>
+					<h3 class="font-bold">Earn Agile & Scrum Certification</h3>
+					<p>Successfully complete three required courses and a final project to earn your Certificate in Agile. Students can then choose to take a certification exam to earn Villanova's Professional Certification in Agile and Scrum credential. Earning this certification can help demonstrate your commitment to learning and applying Agile and Scrum best practices.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- colorstrap gray -->
+
+		<div class="row bg-gray">
+			<div class="row width-lock margin-tb-64 fg-gray">
+				<div class="col-4-5 flex-col flex-start">
+					<h4 class="fg-blue-dark">Prepare for Agile Certification Exams</h4>
+					<p>The Certificate in Agile curriculum aligns with multiple certifying bodies, allowing students to prepare to sit for certification exams from the following industry-recognized certifying bodies:</p>
+					<ul>
+						<li>Project Management Institute (PMI): PMI-Agile Certified Practitioner (PMI-ACP&reg;)</li>
+					</ul>
+					<p class="disc">PMI-Agile Certified Practitioner and PMI-ACP are registered marks of the Project Management Institute, Inc. </p>
+				</div>
+				<div class="col-1-5"></div>
+			</div>
+		</div>
+
+		<!-- colorstrap white -->
+
+		<div class="row flex-col margin-tb-64">
+			<div class="row flex-col flex-start width-lock">
+				<h4 class="fg-blue-dark">What You Will Learn</h4>
+			</div>
+			<div class="row width-lock fg-gray flex-start">
+				<div class="col-1-2 flex-col flex-start padding-r-32">
+					<ul>
+						<li>Four values of Agile methodology</li>
+						<li>Lean, Kanban and Scrum terms/concepts</li>
+						<li>Avoiding common roadblocks that threaten team collaboration</li>
+					</ul>
+				</div>
+				<div class="col-1-2 flex-col flex-start padding-r-32">
+					<ul>
+						<li>Maintaining transparency throughout a project's lifecycle</li>
+						<li>Agile coaching and change management techniques</li>
+						<li>Tips for passing industry-recognized Agile certification exams</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- quote -->
+
+		<div id="quote" class="row fg-white">
+			<div class="row quote margin-tb-64 width-lock">
+				<div class="col-3-5 flex-col">
+					<img class="quote-img" src="https://v.fastcdn.co/u/2d746943/39334411-0-Steve-Cutlip-Image-c.png">
+					<p class="quote-p">"To continually improve a company, we must continually improve ourselves. There's no better way of doing that than continuous education and by having mentors in our lives. Find out what education will work best in your environment. Review what Villanova has to offer and go for it."</p>
+					<p><strong>Steve Cutlip</strong>, Certificate in Agile</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- colorstrap gray -->
+
+		<div class="row bg-gray flex-col padding-tb-64">
+			<div class="row width-lock fg-gray">
+				<div class="col-3-5 flex-col center-text margin-b-64">
+					<h4 class="fg-blue-dark">Who Should Enroll?</h4>
+					<p>The certificate program is designed to benefit professionals at all levels in all industry sectors, including government and nonprofit, providing them with practical knowledge and skills that may be applied immediately, while preparing them for industry certification exams and the Villanova Professional Certification in Agile & Scrum.</p>
+				</div>
+			</div>
+			<div class="row width-lock fg-gray">
+				<div class="col-2-5 flex-col padding-r-32">
+					<div class="card">
+						<img src="https://learn.bisk.com/rs/058-NIT-467/images/icon-stack.png">
+						<div class="card-text">
+							<p>Weekly, live virtual class sessions featuring real-time collaboration with instructors and classmates</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-2-5 flex-col padding-l-32 mob-only-padding-t-32">
+					<div class="card">
+						<img src="https://learn.bisk.com/rs/058-NIT-467/images/icon-clock.png">
+						<div class="card-text">
+							<p>24/7 classroom access from a computer, tablet or mobile device with internet access</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- colorstrap white -->
+
+		<div id="image-square" class="row flex-col margin-tb-64">
+			<div class="row width-lock fg-gray">
+				<div class="col-1-3 flex-col flex-start padding-r-32">
+					<h4 class="fg-blue-dark">Three Required Courses</h4>
+					<ol>
+						<li>Foundations of Agile Methodliogy</li>
+						<li>Applications of Agile Principles</li>
+						<li>Leading Agile Teams</li>
+					</ol>
+					<p class="font-bold fg-blue-dark">Ready to learn more?</p>
+					<a href="#lp-hero" class="button bg-blue-dark fg-white">Download the Guide</a>
+				</div>
+				<div class="col-1-3 flex-col flex-start padding-r-32 mob-only-margin-t-32">
+					<div class="image-square"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- colorstrap color -->
+
+		<div id="bb" class="row fg-white bg-blue-dark flex-col">
+			<div class="row quote margin-t-64 width-lock">
+				<div class="col-4-5 flex-col center-text">
+					<h4 class="font-normal">Are you on active-duty, transitioning to the<br> civilian workforce, or a veteran?</h4>
+					<p>If you are interested in furthering your education or career potential - you may be able to use your Department of Veterans Affairs (VA) education benefits for Villanova's 100% online non-credit certificate programs, based upon your individual eligibility.</p>
+				</div>
+			</div>
+			<div class="row quote width-lock">
+				<div class="col-4-5 flex-col center-text">
+					<div class="row box-horizontal">
+						<div class="col-1-2 padding-32 mob-bg-blue-light">
+							<p>Villanova offers a 15% savings, per certificate course, to active-duty servicemembers, veterans, Guardsmen, Reservists and their spouses and dependents (upon verification of military status).</p>
+						</div>
+						<div class="col-1-2 fg-gray padding-32 mob-bg-gray">
+							<p>Villanova thanks you for your service and invites you to become part of our community of learners. Download a certificate program guide for additional information.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-3-5 flex-col">
+							<p class="disc">This reduction is valid off the standard tuition fee rate of the listed courses offered by Villanova University with online administration by Bisk. This reduction is not stackable with other reductions, and you may not use this reduction in conjunction with other reductions. Reduction is based on eligibility requirements and proof of service.</p>
+						</div>
+					</div>
+					<div class="row margin-b-64">
+						<div class="col-4-5 flex-col">
+							<h4 class="font-normal">Group and Corporate Rates are Available</h4>
+							<p>We've worked with more than 300 employers representing industries ranging from healthcare and government to manufacturing, retail and professional services. Contact a corporate representative at <strong>800-441-0187</strong> for more information.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- colorstrap diagonal -->
+
+		<div id="diagonal" class="row flex-col padding-tb-64">
+			<div class="row width-lock fg-gray">
+				<div class="col-2-3 flex-col flex-start padding-r-32">
+					<h3 class="fg-blue-dark font-bold">Expert Instructors, Respected University</h3>
+					<img class="image-100 box-shadow only-mob" src="https://learn.bisk.com/rs/058-NIT-467/images/thumb-vu-guide.png">
+					<p class="p-big">By selecting Villanova University, you will receive the highest quality education, delivered by industry practitioners that are experienced in their fields.</p>
+					<p>Download a certificate program guide for information regarding pricing, payment options and assistance, course requirements and more.</p>
+					<a href="#lp-hero" class="button bg-blue-dark fg-white margin-t-32">Download the Guide</a>
+				</div>
+				<div class="col-1-3 flex-col flex-start padding-l-32 mob-only-margin-t-32 only-desk">
+					<img class="image-100 box-shadow" src="https://learn.bisk.com/rs/058-NIT-467/images/thumb-vu-guide.png">
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+
+		<div id="footer" class="row flex-col bg-blue-dark fg-white center-text">
+			<div class="row width-lock">
+				<div class="col-4-5 flex-col">
+					<p>Delivered on behalf of Villanova University by Bisk &copy; 2021<br>
+					Program cost, availability and requirements are subject to change.</p>
+				</div>
+			</div>
+			<div class="row width-lock margin-t-32">
+				<div class="col-3-5">
+					<a href="https://www.villanovau.com/privacy-policy/" target="_blank" class="fg-white">Privacy Policy</a> | <a href="https://www.villanovau.com/terms-of-use/" target="_blank" class="fg-white">Terms</a> | <a href="https://www.villanovau.com/student-disclosures/" target="_blank" class="fg-white">Student Disclosures</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
