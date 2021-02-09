@@ -878,7 +878,10 @@
 	        	label: "Next"
 	    	}
 	    },
-			requiredFields: [
+
+	    // Edit required fields as needed
+
+		requiredFields: [
 				{
 					 name: "Program_of_Interest__c",
 					 message: "This field is required."
@@ -910,7 +913,7 @@
 				{
 					name: "CountryCode",
 					message: "This field is required."
-			  }
+			  	}
 			]
 		};
 
@@ -954,6 +957,7 @@
 			};
 
 			// id each wrapper row in DOM order
+
 			row.id = fsaatPrefix + rowIdx;
 
 			var navButtonRow = rowPos.isLast
@@ -1127,7 +1131,7 @@
 		      });
 		    });
 
-		    // Input Grouping
+		    // Group Dropdowns
 
 		    arrayify(formEl.querySelectorAll('SELECT'))
 		    .forEach(function(selectEl) {
