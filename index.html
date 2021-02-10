@@ -4,10 +4,12 @@
 	<title>Agile Management</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="{{my.Favicon}}" type="image/x-icon" >
+	<link rel="icon" href="{{my.Favicon}}" type="image/x-icon" >
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 	<script src="//app-ab16.marketo.com/js/forms2/js/forms2.min.js"></script>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 		/* ---------- reset ---------- */
 
 		html { scroll-behavior: smooth; }
@@ -131,10 +133,14 @@
 			min-height: 70px;
 		}
 
+		#lp-promo p {
+			font-size: 1.1em;
+		}
+
 		#lp-hero {
 			background-image: url("https://v.fastcdn.co/u/2d746943/49664215-0-Agile-Header-New.png");
 			background-size: cover;
-			background-position: center -140px;
+			background-position: center -100px;
 			background-repeat: no-repeat;
 			/* max-height: 820px; */
 		}
@@ -144,20 +150,27 @@
 		}
 
 		.hero-space {
-			padding-top: 450px;
+			padding-top: 300px;
+		}
+
+		#lp-form-wrap {
+			padding: 0 0px 0 64px;
 		}
 
 		#lp-form {
 			background: rgba(255,255,255,1);
-			/* min-height: 620px; */
 			width: 100%;
-			margin: 42px 0 42px 42px;
 			box-sizing: border-box;
-			margin-top: -100px;
-			padding: 48px;
+			padding: 32px 48px 16px 48px;
 			opacity: 0;
 			transition: opacity .5s;
 			border-radius: 4px;
+		}
+
+		#lp-phone {
+			opacity: 0;
+			transition: opacity .5s;
+			font-size: 1.2em;
 		}
 
 		#lp-underhero {flex-direction: column;/* padding: 16px 0; */}
@@ -258,7 +271,7 @@
             border-radius: 4px;
             width: 100% !important;
             font-family: 'Montserrat', sans-serif !important;
-            margin-top: 32px;
+            margin-top: 8px;
         }
 
         .mktoForm label {
@@ -416,6 +429,10 @@
         	padding: 24px 0 0 0 !important;
         }
 
+        .form-disc a {
+        	text-decoration: underline;
+        }
+
        	@media (max-width: 768px) {
 
 			h1 { font-size: 2.4em; }
@@ -441,9 +458,17 @@
 				background-position: top center;
 			}
 
+			#lp-form-wrap {
+				padding: 0;
+			}
+
 		    #lp-form {
 		    	margin: 32px 0 24px 0;
 		    	padding: 32px;
+		    }
+
+		    #lp-phone {
+		    	align-self: flex-start;
 		    }
 
 		    .hero-space {
@@ -490,7 +515,7 @@
 
 			/* form stuff */
 
-			            .mktoFormRow { 
+			.mktoFormRow { 
                 margin: 0 0 16px 0 !important;
             }
 
@@ -597,7 +622,7 @@
 		<!-- hero -->
 
 		<div id="lp-hero" class="row bg-blue-dark">
-			<div class="row width-lock fg-white hero-space flex-start">
+			<div class="row width-lock fg-white hero-space flex-end">
 				<div class="col-1-2 flex-col flex-start">
 					<h1>Earn a Certificate<br>in Agile</h1>
 					<h3>Prepare for Agile Certification 100% Online</h3>
@@ -607,14 +632,14 @@
 						<p>Collaborative and adaptive by design, Agile breaks requirements into small manageable pieces, providing teams focus and clarity as they work toward organizational goals. Course content covers key agile focus areas similar to those identified as Scrum.org key competencies.</p>
 					</span>
 				</div>
-				<div class="col-1-2">
+				<div id="lp-form-wrap" class="col-1-2 flex-col padding-l-32">
 					<div id="lp-form">
 						<h5 class="fg-blue-dark center-text font-normal">Request a program brochure with course info, pricing and more.</h5>
 						<form id="mktoForm_5048"></form>
 					</div>
+					<p id="lp-phone">Call Now <strong>800-441-0187</strong></p>
 				</div>
 			</div>
-
 		</div>
 
 		<!-- underhero -->
@@ -819,6 +844,7 @@
         </div>
 
 	</div>
+
 	<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script>
 
@@ -1170,9 +1196,14 @@
 		        } 
 		    });
 
+		    // Add hidden fields
+
+		    form.addHiddenFields({ Landing_Page_URL__c : document.location});
+
 		    // Show Form
 
 		    document.getElementById("lp-form").style.opacity = 1;
+		    document.getElementById("lp-phone").style.opacity = 1;
 
 		});
 
